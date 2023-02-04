@@ -34,6 +34,9 @@ public class Health : MonoBehaviour
 
         _health = _maxHealth;
         _root.OnRoot += OnRoot;
+
+        _deathScreen.alpha = 0;
+        _deathScreen.interactable = false;
     }
 
     private void OnRoot(bool isRooted)
@@ -101,6 +104,7 @@ public class Health : MonoBehaviour
         yield return new WaitForSeconds(_deathScreenDelay);
 
         _deathScreen.DOFade(1, _deathFadeTime);
+        _deathScreen.interactable = true;
 
         Destroy(_movement);
     }
