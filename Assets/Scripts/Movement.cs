@@ -22,6 +22,8 @@ public class Movement : MonoBehaviour
 
     Controls _controls;
 
+    public bool CanMove { get; private set; } = true;
+
     static readonly int SpeedXId = Animator.StringToHash("SpeedX");
     static readonly int SpeedYId = Animator.StringToHash("SpeedY");
 
@@ -34,6 +36,11 @@ public class Movement : MonoBehaviour
         _controls.Player.Look.performed += Look;
 
         _camEuler = _cam.localEulerAngles.x;
+    }
+
+    void OnDisable()
+    {
+        _smoothInput = Vector2.zero;
     }
 
     private void Look(InputAction.CallbackContext obj)
