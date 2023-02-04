@@ -8,9 +8,12 @@ public class Movement : MonoBehaviour
     [SerializeField] float _sensitivity;
     [SerializeField] float _clamp;
     [SerializeField] float _speed;
+    [SerializeField] float _gravity;
     [SerializeField] Animator _animator;
 
     float _camEuler;
+
+    float _yVelocity;
 
     Controls _controls;
 
@@ -42,8 +45,17 @@ public class Movement : MonoBehaviour
 
     void Update()
     {
+        if (_controller.isGrounded)
+        {
+            _yVelocity = 0;
+        }
+        else
+        {
+            _yVelocity -= _gravity * Time.deltaTime;
+        }
+
         var input = _controls.Player.Move.ReadValue<Vector2>();
-        var movement = new Vector3(input.x, 0, input.y) * _speed * Time.deltaTime;
+        var movement = _speed * Time.deltaTime * new Vector3(input.x, _yVelocity, input.y);
         _controller.Move(transform.TransformDirection(movement));
 
         _animator.SetFloat(SpeedId, input.sqrMagnitude);
