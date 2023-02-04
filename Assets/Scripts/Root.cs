@@ -7,6 +7,10 @@ public class Root : MonoBehaviour
     [SerializeField] string _hideState;
     [SerializeField] string _emergeState;
     [SerializeField] Movement _movement;
+    [SerializeField] AudioClip _emergeClip;
+    [SerializeField] AudioClip _hideClip;
+    [SerializeField] AudioSource _source;
+    [SerializeField] float _volumeScale;
 
     int _hideStateId;
     int _emergeStateId;
@@ -46,10 +50,12 @@ public class Root : MonoBehaviour
         {
             _animator.Play(_hideStateId, 0);
             _movement.enabled = false;
+            _source.PlayOneShot(_hideClip, _volumeScale);
         }
         else
         {
             _animator.Play(_emergeStateId, 0);
+            _source.PlayOneShot(_emergeClip, _volumeScale);
         }
 
         yield return null;
