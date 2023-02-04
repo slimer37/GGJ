@@ -19,6 +19,14 @@ public class CombineAnimator : MonoBehaviour
     [SerializeField] float _wheelSpinSpeed;
     [SerializeField] Vector3 _wheelDirection;
 
+    [Header("Cutting")]
+    [SerializeField] ParticleSystem _particles;
+
+    void OnTriggerEnter(Collider other)
+    {
+        _particles.Play();
+    }
+
     void Awake()
     {
         _body.DOShakeRotation(5, _shakeStrength, _vibrato, 90, false, ShakeRandomnessMode.Harmonic).SetLoops(-1);
