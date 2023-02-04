@@ -9,11 +9,16 @@ public class Movement : MonoBehaviour
     [SerializeField] float _clamp;
     [SerializeField] float _speed;
     [SerializeField] float _gravity;
+    [SerializeField] float _smoothing;
     [SerializeField] Animator _animator;
 
     float _camEuler;
 
     float _yVelocity;
+
+    Vector2 _smoothInput;
+
+    Vector2 _inputSmoothingVelocity;
 
     Controls _controls;
 
@@ -56,10 +61,13 @@ public class Movement : MonoBehaviour
         }
 
         var input = _controls.Player.Move.ReadValue<Vector2>();
-        var movement = _speed * Time.deltaTime * new Vector3(input.x, _yVelocity, input.y);
+
+        _smoothInput = Vector2.SmoothDamp(_smoothInput, input, ref _inputSmoothingVelocity, _smoothing);
+
+        var movement = _speed * Time.deltaTime * new Vector3(_smoothInput.x, _yVelocity, _smoothInput.y);
         _controller.Move(transform.TransformDirection(movement));
 
-        _animator.SetFloat(SpeedXId, input.x);
-        _animator.SetFloat(SpeedYId, input.y);
+        _animator.SetFloat(SpeedXId, _smoothInput.x);
+        _animator.SetFloat(SpeedYId, _smoothInput.y);
     }
 }

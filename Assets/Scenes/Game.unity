@@ -444,6 +444,7 @@ MonoBehaviour:
   _clamp: 80
   _speed: 5
   _gravity: 9.81
+  _smoothing: 0.1
   _animator: {fileID: 1360686590}
 --- !u!143 &445230755
 CharacterController:
