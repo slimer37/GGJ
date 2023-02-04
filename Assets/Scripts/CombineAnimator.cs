@@ -6,9 +6,18 @@ public class CombineAnimator : MonoBehaviour
     [SerializeField] float _rotationSpeed;
     [SerializeField] Transform _cylinder;
     [SerializeField] Transform[] rakes;
+
+    [Header("Shaking")]
     [SerializeField] Transform _body;
     [SerializeField] float _shakeStrength;
     [SerializeField] int _vibrato;
+
+    [Header("Driving")]
+    [SerializeField] float _speed;
+    [SerializeField] Vector3 _direction;
+    [SerializeField] Transform[] wheels;
+    [SerializeField] float _wheelSpinSpeed;
+    [SerializeField] Vector3 _wheelDirection;
 
     void Awake()
     {
@@ -24,5 +33,12 @@ public class CombineAnimator : MonoBehaviour
         {
             rake.Rotate(Vector3.right * -rot);
         }
+
+        foreach (var wheel in wheels)
+        {
+            wheel.Rotate(-_wheelSpinSpeed * Time.deltaTime * _wheelDirection);
+        }
+
+        transform.Translate(_speed * Time.deltaTime * _direction);
     }
 }

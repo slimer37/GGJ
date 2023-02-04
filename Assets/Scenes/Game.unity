@@ -123,6 +123,12 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!4 &78295713 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -4279570077950996128, guid: 163c2c4ca5e5c7a4095504159f8126ef,
+    type: 3}
+  m_PrefabInstance: {fileID: 953453404}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &113970283
 GameObject:
   m_ObjectHideFlags: 0
@@ -5388,7 +5394,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 163c2c4ca5e5c7a4095504159f8126ef,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -6.34
+      value: -50.3
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 163c2c4ca5e5c7a4095504159f8126ef,
         type: 3}
@@ -5546,6 +5552,19 @@ MonoBehaviour:
   _body: {fileID: 592844301}
   _shakeStrength: 0.5
   _vibrato: 20
+  _speed: 5
+  _direction: {x: 0, y: 0, z: 1}
+  wheels:
+  - {fileID: 78295713}
+  - {fileID: 1349759662}
+  _wheelSpinSpeed: 150
+  _wheelDirection: {x: 0, y: 0, z: 1}
+--- !u!4 &1349759662 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2025889882652605770, guid: 163c2c4ca5e5c7a4095504159f8126ef,
+    type: 3}
+  m_PrefabInstance: {fileID: 953453404}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1360686588
 PrefabInstance:
   m_ObjectHideFlags: 0
