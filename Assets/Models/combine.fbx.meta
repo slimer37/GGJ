@@ -12,6 +12,11 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: rake
+    second: {fileID: 2100000, guid: 31098726ad78a5f4f9269768fd868997, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: tire
     second: {fileID: 2100000, guid: 0cc89c22ff923fa4b90a1570278f96ad, type: 2}
   - first:
