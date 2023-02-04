@@ -13,6 +13,11 @@ public class Root : MonoBehaviour
     [SerializeField] AudioSource _source;
     [SerializeField] float _volumeScale;
 
+    [Header("Wheat Check")]
+    [SerializeField] Transform _wheatCheck;
+    [SerializeField] float _wheatCheckRadius;
+    [SerializeField] LayerMask _wheat;
+
     public event Action<bool> OnRoot;
 
     int _hideStateId;
@@ -23,6 +28,8 @@ public class Root : MonoBehaviour
     bool _isRooted;
 
     bool _isAnimating;
+
+    public bool _isHiding;
 
     void Awake()
     {
@@ -77,5 +84,16 @@ public class Root : MonoBehaviour
         }
 
         _isAnimating = false;
+    }
+
+    void FixedUpdate()
+    {
+        if (!_isRooted || _isAnimating)
+        {
+            _isHiding = false;
+            return;
+        }
+
+        _isHiding = Physics.CheckSphere(_wheatCheck.position, _wheatCheckRadius, _wheat, QueryTriggerInteraction.Collide);
     }
 }
