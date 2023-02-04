@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -11,6 +12,8 @@ public class Root : MonoBehaviour
     [SerializeField] AudioClip _hideClip;
     [SerializeField] AudioSource _source;
     [SerializeField] float _volumeScale;
+
+    public event Action<bool> OnRoot;
 
     int _hideStateId;
     int _emergeStateId;
@@ -56,13 +59,19 @@ public class Root : MonoBehaviour
         {
             _animator.Play(_emergeStateId, 0);
             _source.PlayOneShot(_emergeClip, _volumeScale);
+
+            OnRoot?.Invoke(false);
         }
 
         yield return null;
 
         yield return new WaitForSeconds(_animator.GetCurrentAnimatorStateInfo(0).length);
 
-        if (!_isRooted)
+        if (_isRooted)
+        {
+            OnRoot?.Invoke(true);
+        }
+        else
         {
             _movement.enabled = true;
         }
