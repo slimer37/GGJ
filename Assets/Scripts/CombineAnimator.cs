@@ -21,10 +21,22 @@ public class CombineAnimator : MonoBehaviour
 
     [Header("Cutting")]
     [SerializeField] ParticleSystem _particles;
+    [SerializeField] AudioClip[] _clips;
+    [SerializeField] AudioSource _source;
+    [SerializeField] float _interval;
+    [SerializeField] float _volumeScale;
+
+    float _sfxTimeBetween;
 
     void OnTriggerEnter(Collider other)
     {
         _particles.Play();
+
+        if (_sfxTimeBetween < _interval) return;
+
+        _source.PlayOneShot(_clips[Random.Range(0, _clips.Length)], _volumeScale);
+
+        _sfxTimeBetween = 0;
     }
 
     void Awake()
@@ -48,5 +60,7 @@ public class CombineAnimator : MonoBehaviour
         }
 
         transform.Translate(_speed * Time.deltaTime * _direction);
+
+        _sfxTimeBetween += Time.deltaTime;
     }
 }
