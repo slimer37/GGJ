@@ -402,7 +402,7 @@ GameObject:
   - component: {fileID: 445230753}
   - component: {fileID: 445230754}
   - component: {fileID: 445230755}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1719,7 +1719,7 @@ MonoBehaviour:
   CameraDistance: 5
   CameraCollisionFilter:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 1
   IgnoreTag: 
   CameraRadius: 0.2
   DampingIntoCollision: 0
