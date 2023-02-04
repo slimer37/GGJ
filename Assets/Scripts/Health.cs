@@ -67,7 +67,7 @@ public class Health : MonoBehaviour
 
         if (!_tween.IsActive() && _timeSinceHealthChange > _delay)
         {
-            _group.DOFade(0, _fadeTime);
+            _tween = _group.DOFade(0, _fadeTime);
         }
     }
 }
