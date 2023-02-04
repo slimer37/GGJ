@@ -17,7 +17,8 @@ public class Movement : MonoBehaviour
 
     Controls _controls;
 
-    static readonly int SpeedId = Animator.StringToHash("Speed");
+    static readonly int SpeedXId = Animator.StringToHash("SpeedX");
+    static readonly int SpeedYId = Animator.StringToHash("SpeedY");
 
     void Awake()
     {
@@ -58,6 +59,7 @@ public class Movement : MonoBehaviour
         var movement = _speed * Time.deltaTime * new Vector3(input.x, _yVelocity, input.y);
         _controller.Move(transform.TransformDirection(movement));
 
-        _animator.SetFloat(SpeedId, input.sqrMagnitude);
+        _animator.SetFloat(SpeedXId, input.x);
+        _animator.SetFloat(SpeedYId, input.y);
     }
 }
