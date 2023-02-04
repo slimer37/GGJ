@@ -5293,6 +5293,12 @@ MonoBehaviour:
   _hideState: hide
   _emergeState: emerge
   _movement: {fileID: 445230754}
+--- !u!4 &592844301 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5938975495881649244, guid: 163c2c4ca5e5c7a4095504159f8126ef,
+    type: 3}
+  m_PrefabInstance: {fileID: 953453404}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &832575517
 GameObject:
   m_ObjectHideFlags: 0
@@ -5530,13 +5536,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 275a9b247ff665047b4f97487f574a45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _rotationSpeed: 180
+  _rotationSpeed: 360
   _cylinder: {fileID: 953453409}
   rakes:
   - {fileID: 953453408}
   - {fileID: 953453407}
   - {fileID: 953453406}
   - {fileID: 953453405}
+  _body: {fileID: 592844301}
+  _shakeStrength: 0.5
+  _vibrato: 20
 --- !u!1001 &1360686588
 PrefabInstance:
   m_ObjectHideFlags: 0
