@@ -42,6 +42,7 @@ public class Movement : MonoBehaviour
     void OnDisable()
     {
         _smoothInput = Vector2.zero;
+        _controls.Disable();
     }
 
     void OnDestroy()

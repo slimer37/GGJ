@@ -44,6 +44,11 @@ public class CombineAnimator : MonoBehaviour
         _body.DOShakeRotation(5, _shakeStrength, _vibrato, 90, false, ShakeRandomnessMode.Harmonic).SetLoops(-1);
     }
 
+    void OnDestroy()
+    {
+        _body.DOKill();
+    }
+
     void Update()
     {
         var rot = _rotationSpeed * Time.deltaTime;
