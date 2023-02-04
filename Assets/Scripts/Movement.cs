@@ -8,10 +8,13 @@ public class Movement : MonoBehaviour
     [SerializeField] float _sensitivity;
     [SerializeField] float _clamp;
     [SerializeField] float _speed;
+    [SerializeField] Animator _animator;
 
     float _camEuler;
 
     Controls _controls;
+
+    static readonly int SpeedId = Animator.StringToHash("Speed");
 
     void Awake()
     {
@@ -42,5 +45,7 @@ public class Movement : MonoBehaviour
         var input = _controls.Player.Move.ReadValue<Vector2>();
         var movement = new Vector3(input.x, 0, input.y) * _speed * Time.deltaTime;
         _controller.Move(transform.TransformDirection(movement));
+
+        _animator.SetFloat(SpeedId, input.sqrMagnitude);
     }
 }
