@@ -6961,7 +6961,9 @@ MonoBehaviour:
   rayOffset: 2
   offset: {x: -72.43, y: 0, z: -74.5}
   gizmoSize: 0.26
+  chanceNoWheat: 0.3
   ground: {fileID: 1109930312}
+  _randomOffset: {x: 0.2, y: 0, z: 0.2}
 --- !u!1 &1183876093
 GameObject:
   m_ObjectHideFlags: 0
@@ -13838,7 +13840,9 @@ MonoBehaviour:
   rayOffset: 2
   offset: {x: -72.43, y: 0, z: -74.5}
   gizmoSize: 0.26
+  chanceNoWheat: 0.3
   ground: {fileID: 1667266243}
+  _randomOffset: {x: 0.2, y: 0, z: 0.2}
 --- !u!64 &1667266243
 MeshCollider:
   m_ObjectHideFlags: 0
