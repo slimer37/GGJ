@@ -440,7 +440,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _controller: {fileID: 445230755}
   _cam: {fileID: 1183876094}
-  _sensitivity: 5
+  _sensitivity: 200
   _clamp: 80
   _speed: 5
   _gravity: 9.81
