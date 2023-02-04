@@ -1,4 +1,5 @@
 using DG.Tweening;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -11,6 +12,10 @@ public class Health : MonoBehaviour
     [SerializeField] float _delay;
     [SerializeField] Root _root;
     [SerializeField] float _rootHeal;
+    [SerializeField] Canvas _deathScreen;
+    [SerializeField] Animator animator;
+    [SerializeField] float _deathScreenDelay;
+    [SerializeField] Movement _movement;
 
     float _health;
 
@@ -20,8 +25,12 @@ public class Health : MonoBehaviour
 
     bool _isRooted;
 
+    public static bool IsDead { get; private set; }
+
     void Awake()
     {
+        IsDead = false;
+
         _health = _maxHealth;
         _root.OnRoot += OnRoot;
     }
@@ -51,10 +60,17 @@ public class Health : MonoBehaviour
         _group.alpha = 1;
 
         _timeSinceHealthChange = 0;
+
+        if (_health <= 0)
+        {
+            StartCoroutine(Die());
+        }
     }
 
     void Update()
     {
+        if (IsDead) return;
+
         if (_isRooted)
         {
             _health = Mathf.Clamp(_health + _rootHeal * Time.deltaTime, 0, _maxHealth);
@@ -69,5 +85,20 @@ public class Health : MonoBehaviour
         {
             _tween = _group.DOFade(0, _fadeTime);
         }
+    }
+
+    IEnumerator Die()
+    {
+        if (IsDead) yield break;
+
+        _movement.enabled = false;
+
+        IsDead = true;
+
+        animator.Play("die", 0);
+
+        yield return new WaitForSeconds(_deathScreenDelay);
+
+        _deathScreen.enabled = true;
     }
 }

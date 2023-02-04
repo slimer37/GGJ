@@ -6124,6 +6124,10 @@ MonoBehaviour:
   _delay: 2
   _root: {fileID: 445230756}
   _rootHeal: 5
+  _deathScreen: {fileID: 1381637248}
+  animator: {fileID: 1360686590}
+  _deathScreenDelay: 2
+  _movement: {fileID: 445230754}
 --- !u!1 &592844300 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5044830236501152199, guid: 163c2c4ca5e5c7a4095504159f8126ef,
