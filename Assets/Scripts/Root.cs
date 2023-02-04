@@ -17,6 +17,8 @@ public class Root : MonoBehaviour
     [SerializeField] Transform _wheatCheck;
     [SerializeField] float _wheatCheckRadius;
     [SerializeField] LayerMask _wheat;
+    [SerializeField] GameObject _exposedMessage;
+    [SerializeField] GameObject _hidingMessage;
 
     public event Action<bool> OnRoot;
 
@@ -91,9 +93,14 @@ public class Root : MonoBehaviour
         if (!_isRooted || _isAnimating)
         {
             _isHiding = false;
+            _exposedMessage.SetActive(false);
+            _hidingMessage.SetActive(false);
             return;
         }
 
         _isHiding = Physics.CheckSphere(_wheatCheck.position, _wheatCheckRadius, _wheat, QueryTriggerInteraction.Collide);
+
+        _exposedMessage.SetActive(!_isHiding);
+        _hidingMessage.SetActive(_isHiding);
     }
 }
