@@ -6129,6 +6129,11 @@ MonoBehaviour:
   _deathScreenDelay: 3
   _deathFadeTime: 1
   _movement: {fileID: 445230754}
+  _source: {fileID: 445230757}
+  _hurtClips:
+  - {fileID: 8300000, guid: 076a4f026cf958c4c8d0b7021719d169, type: 3}
+  - {fileID: 8300000, guid: 984f85ad0c332ec4388bdffbea665e7f, type: 3}
+  _volumeScale: 1
 --- !u!1 &592844300 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5044830236501152199, guid: 163c2c4ca5e5c7a4095504159f8126ef,

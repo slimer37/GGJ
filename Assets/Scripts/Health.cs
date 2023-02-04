@@ -17,6 +17,9 @@ public class Health : MonoBehaviour
     [SerializeField] float _deathScreenDelay;
     [SerializeField] float _deathFadeTime;
     [SerializeField] Movement _movement;
+    [SerializeField] AudioSource _source;
+    [SerializeField] AudioClip[] _hurtClips;
+    [SerializeField] float _volumeScale;
 
     float _health;
 
@@ -50,13 +53,15 @@ public class Health : MonoBehaviour
     {
         _health -= damage;
 
-        UpdateHealth();
+        if (!UpdateHealth()) return;
+
+        _source.PlayOneShot(_hurtClips[Random.Range(0, _hurtClips.Length)], _volumeScale);
     }
 
-    void UpdateHealth()
+    bool UpdateHealth()
     {
         _health = Mathf.Clamp(_health, 0, _maxHealth);
-        if (_slider.value == _health / _maxHealth) return;
+        if (_slider.value == _health / _maxHealth) return false;
 
         _slider.value = _health / _maxHealth;
 
@@ -69,6 +74,8 @@ public class Health : MonoBehaviour
         {
             StartCoroutine(Die());
         }
+
+        return true;
     }
 
     void Update()
