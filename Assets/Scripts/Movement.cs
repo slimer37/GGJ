@@ -44,6 +44,11 @@ public class Movement : MonoBehaviour
         _smoothInput = Vector2.zero;
     }
 
+    void OnDestroy()
+    {
+        _controls.Dispose();
+    }
+
     private void Look(InputAction.CallbackContext obj)
     {
         var delta = _sensitivity * Time.deltaTime * obj.ReadValue<Vector2>();

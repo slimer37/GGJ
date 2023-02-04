@@ -12,9 +12,10 @@ public class Health : MonoBehaviour
     [SerializeField] float _delay;
     [SerializeField] Root _root;
     [SerializeField] float _rootHeal;
-    [SerializeField] Canvas _deathScreen;
+    [SerializeField] CanvasGroup _deathScreen;
     [SerializeField] Animator animator;
     [SerializeField] float _deathScreenDelay;
+    [SerializeField] float _deathFadeTime;
     [SerializeField] Movement _movement;
 
     float _health;
@@ -99,6 +100,8 @@ public class Health : MonoBehaviour
 
         yield return new WaitForSeconds(_deathScreenDelay);
 
-        _deathScreen.enabled = true;
+        _deathScreen.DOFade(1, _deathFadeTime);
+
+        Destroy(_movement);
     }
 }
