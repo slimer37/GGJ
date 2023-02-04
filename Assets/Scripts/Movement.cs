@@ -13,6 +13,7 @@ public class Movement : MonoBehaviour
     [SerializeField] Animator _animator;
 
     float _camEuler;
+    float _bodyEuler;
 
     float _yVelocity;
 
@@ -51,9 +52,13 @@ public class Movement : MonoBehaviour
 
         _camEuler = Mathf.Clamp(_camEuler, -_clamp, _clamp);
 
-        transform.Rotate(Vector3.up * delta.x);
+        _bodyEuler += delta.x;
 
-        _cam.localEulerAngles = Vector3.right * _camEuler;
+        if (!enabled)
+        {
+            _cam.eulerAngles = new Vector3(_camEuler, _bodyEuler, 0);
+            return;
+        }
     }
 
     void Update()
@@ -72,9 +77,16 @@ public class Movement : MonoBehaviour
         _smoothInput = Vector2.SmoothDamp(_smoothInput, input, ref _inputSmoothingVelocity, _smoothing);
 
         var movement = _speed * Time.deltaTime * new Vector3(_smoothInput.x, _yVelocity, _smoothInput.y);
-        _controller.Move(transform.TransformDirection(movement));
+        _controller.Move(Quaternion.Euler(Vector3.up * _bodyEuler) * movement);
 
         _animator.SetFloat(SpeedXId, _smoothInput.x);
         _animator.SetFloat(SpeedYId, _smoothInput.y);
+
+        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(Vector3.up * _bodyEuler), Time.deltaTime / _smoothing);
+    }
+
+    void LateUpdate()
+    {
+        _cam.eulerAngles = new Vector3(_camEuler, _bodyEuler, 0);
     }
 }
