@@ -6499,7 +6499,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _damageInterval: 0.01
+  _farmerDamageInterval: 0.1
   _damage: 1
+  _farmerDamage: 1
   _health: {fileID: 468506588}
 --- !u!1 &468506584
 GameObject:
@@ -16926,7 +16928,7 @@ PrefabInstance:
     - target: {fileID: 4621498792966836889, guid: 2a486e42310d4f9458a9fd90aa8bbefa,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 12.799629
+      value: 0.53
       objectReference: {fileID: 0}
     - target: {fileID: 4621498792966836889, guid: 2a486e42310d4f9458a9fd90aa8bbefa,
         type: 3}
@@ -16936,7 +16938,7 @@ PrefabInstance:
     - target: {fileID: 4621498792966836889, guid: 2a486e42310d4f9458a9fd90aa8bbefa,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -62.05
+      value: -7.17
       objectReference: {fileID: 0}
     - target: {fileID: 4621498792966836889, guid: 2a486e42310d4f9458a9fd90aa8bbefa,
         type: 3}

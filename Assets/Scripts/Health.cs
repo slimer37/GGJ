@@ -29,10 +29,14 @@ public class Health : MonoBehaviour
 
     bool _isRooted;
 
+    public static Health Instance { get; private set; }
+
     public static bool IsDead { get; private set; }
 
     void Awake()
     {
+        Instance = this;
+
         IsDead = false;
 
         _health = _maxHealth;

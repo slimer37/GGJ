@@ -7,12 +7,15 @@ public class Farmer : MonoBehaviour
     [SerializeField] float _gravity = 9.81f;
     [SerializeField] float _speed;
     [SerializeField] float _wanderInterval;
+    [SerializeField] Animator _animator;
 
     float _yVelocity;
 
     Vector3 delta;
 
     Coroutine _wander;
+
+    static readonly int SpeedId = Animator.StringToHash("Speed");
 
     void Awake()
     {
@@ -45,6 +48,10 @@ public class Farmer : MonoBehaviour
         transform.rotation = Quaternion.LookRotation(delta);
 
         _controller.Move(Time.deltaTime * (Vector3.up * _yVelocity + transform.forward * _speed));
+
+        var velocity = _controller.velocity;
+        velocity.y = 0;
+        _animator.SetFloat(SpeedId, velocity.sqrMagnitude);
     }
 
     IEnumerator Wander()
