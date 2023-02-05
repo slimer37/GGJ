@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -12,10 +13,16 @@ public class Movement : MonoBehaviour
     [SerializeField] float _smoothing;
     [SerializeField] Animator _animator;
 
+    [Header("Boost")]
+    [SerializeField] float _boostSpeed;
+    [SerializeField] float _boostDuration;
+
     float _camEuler;
     float _bodyEuler;
 
     float _yVelocity;
+
+    float _defaultSpeed;
 
     Vector2 _smoothInput;
 
@@ -30,6 +37,8 @@ public class Movement : MonoBehaviour
 
     void Awake()
     {
+        _defaultSpeed = _speed;
+
         _controls = new Controls();
 
         _controls.Enable();
@@ -91,5 +100,24 @@ public class Movement : MonoBehaviour
     void LateUpdate()
     {
         _cam.eulerAngles = new Vector3(_camEuler, _bodyEuler, 0);
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (!other.CompareTag("Fertilizer")) return;
+
+        _speed = _defaultSpeed;
+
+        StopAllCoroutines();
+        StartCoroutine(Boost());
+    }
+
+    IEnumerator Boost()
+    {
+        _speed = _boostSpeed;
+
+        yield return new WaitForSeconds(_boostDuration);
+
+        _speed = _defaultSpeed;
     }
 }

@@ -67,6 +67,15 @@ public class Health : MonoBehaviour
         _source.PlayOneShot(_hurtClips[Random.Range(0, _hurtClips.Length)], _volumeScale);
     }
 
+    public void Heal(float heal)
+    {
+        _health += heal;
+
+        if (!UpdateHealth()) return;
+
+        _source.PlayOneShot(_hurtClips[Random.Range(0, _hurtClips.Length)], _volumeScale);
+    }
+
     bool UpdateHealth()
     {
         _health = Mathf.Clamp(_health, 0, _maxHealth);
