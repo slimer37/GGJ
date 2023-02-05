@@ -45,6 +45,8 @@ public class Health : MonoBehaviour
 
         _deathScreen.alpha = 0;
         _deathScreen.interactable = false;
+
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     public void InstaKill()
@@ -125,6 +127,8 @@ public class Health : MonoBehaviour
     IEnumerator Die()
     {
         if (IsDead) yield break;
+
+        Cursor.lockState = CursorLockMode.None;
 
         _movement.enabled = false;
         Score.Instance.enabled = false;
