@@ -13,8 +13,6 @@ public class CombineAnimator : MonoBehaviour
     [SerializeField] int _vibrato;
 
     [Header("Driving")]
-    [SerializeField] float _speed;
-    [SerializeField] Vector3 _direction;
     [SerializeField] Transform[] wheels;
     [SerializeField] float _wheelSpinSpeed;
     [SerializeField] Vector3 _wheelDirection;
@@ -63,8 +61,6 @@ public class CombineAnimator : MonoBehaviour
         {
             wheel.Rotate(-_wheelSpinSpeed * Time.deltaTime * _wheelDirection);
         }
-
-        transform.Translate(_speed * Time.deltaTime * _direction);
 
         _sfxTimeBetween += Time.deltaTime;
     }
