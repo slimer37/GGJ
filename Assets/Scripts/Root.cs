@@ -61,6 +61,11 @@ public class Root : MonoBehaviour
         StartCoroutine(TakeRoot());
     }
 
+    void OnDestroy()
+    {
+        _controls.Dispose();
+    }
+
     IEnumerator TakeRoot()
     {
         _isAnimating = true;
