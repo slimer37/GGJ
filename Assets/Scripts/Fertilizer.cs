@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class Fertilizer : MonoBehaviour
 {
+    [SerializeField] float points;
     [SerializeField] float heal;
     [SerializeField] Vector3 spawnCenter;
     [SerializeField] Vector2 spawnArea;
@@ -17,6 +18,7 @@ public class Fertilizer : MonoBehaviour
         {
             Health.Instance.Heal(heal);
             Teleport();
+            Score.Instance.Value += points;
         }
     }
 
