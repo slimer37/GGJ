@@ -16141,7 +16141,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: You are exposed! Hide in the middle of wheat!
+  m_text: You are exposed! Hide in the middle of grown wheat!
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 270c9184a27fc494081972ad394d8433, type: 2}
   m_sharedMaterial: {fileID: -353129269493049794, guid: 270c9184a27fc494081972ad394d8433,
