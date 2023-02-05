@@ -34,7 +34,7 @@ public class Root : MonoBehaviour
 
     bool _isAnimating;
 
-    public bool _isHiding;
+    public bool isHiding;
 
     void Awake()
     {
@@ -109,15 +109,15 @@ public class Root : MonoBehaviour
 
         if (!_isRooted || _isAnimating)
         {
-            _isHiding = false;
+            isHiding = false;
             _exposedMessage.SetActive(false);
             _hidingMessage.SetActive(false);
             return;
         }
 
-        _isHiding = Physics.CheckSphere(_wheatCheck.position, _wheatCheckRadius, _wheat, QueryTriggerInteraction.Collide);
+        isHiding = Physics.CheckSphere(_wheatCheck.position, _wheatCheckRadius, _wheat, QueryTriggerInteraction.Collide);
 
-        _exposedMessage.SetActive(!_isHiding);
-        _hidingMessage.SetActive(_isHiding);
+        _exposedMessage.SetActive(!isHiding);
+        _hidingMessage.SetActive(isHiding);
     }
 }

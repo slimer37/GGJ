@@ -72,10 +72,8 @@ public class Movement : MonoBehaviour
         {
             _yVelocity = 0;
         }
-        else
-        {
-            _yVelocity -= _gravity * Time.deltaTime;
-        }
+
+        _yVelocity -= _gravity * Time.deltaTime;
 
         var input = _controls.Player.Move.ReadValue<Vector2>();
 
