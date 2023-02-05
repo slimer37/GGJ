@@ -6463,8 +6463,8 @@ MonoBehaviour:
   _gravity: 9.81
   _smoothing: 0.1
   _animator: {fileID: 1360686590}
-  _boostSpeed: 7
-  _boostDuration: 10
+  _boostSpeed: 8
+  _boostDuration: 8
 --- !u!143 &445230755
 CharacterController:
   m_ObjectHideFlags: 0
