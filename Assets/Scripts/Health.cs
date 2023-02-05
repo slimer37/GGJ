@@ -20,6 +20,7 @@ public class Health : MonoBehaviour
     [SerializeField] AudioSource _source;
     [SerializeField] AudioClip[] _hurtClips;
     [SerializeField] float _volumeScale;
+    [SerializeField] float _healPoints;
 
     float _health;
 
@@ -102,6 +103,11 @@ public class Health : MonoBehaviour
 
         if (_isRooted)
         {
+            if (_health < _maxHealth)
+            {
+                Score.Instance.Value += _healPoints * Time.deltaTime;
+            }
+
             _health = Mathf.Clamp(_health + _rootHeal * Time.deltaTime, 0, _maxHealth);
             _slider.value = _health / _maxHealth;
 

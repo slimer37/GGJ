@@ -6770,6 +6770,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 076a4f026cf958c4c8d0b7021719d169, type: 3}
   - {fileID: 8300000, guid: 984f85ad0c332ec4388bdffbea665e7f, type: 3}
   _volumeScale: 1
+  _healPoints: 5
 --- !u!1001 &525876584
 PrefabInstance:
   m_ObjectHideFlags: 0
