@@ -30027,6 +30027,7 @@ MonoBehaviour:
   _controller: {fileID: 1542023278}
   _gravity: 9.81
   _speed: 3
+  _wanderInterval: 5
 --- !u!1 &1595107728
 GameObject:
   m_ObjectHideFlags: 0

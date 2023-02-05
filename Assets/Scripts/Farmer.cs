@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class Farmer : MonoBehaviour
@@ -5,15 +6,18 @@ public class Farmer : MonoBehaviour
     [SerializeField] CharacterController _controller;
     [SerializeField] float _gravity = 9.81f;
     [SerializeField] float _speed;
-
-    static Root _player;
+    [SerializeField] float _wanderInterval;
 
     float _yVelocity;
 
-    [RuntimeInitializeOnLoadMethod]
-    static void Init()
+    Vector3 delta;
+
+    Coroutine _wander;
+
+    void Awake()
     {
-        _player = GameObject.FindGameObjectWithTag("Player").GetComponent<Root>();
+        delta = Vector3.forward;
+        _wander = StartCoroutine(Wander());
     }
 
     void Update()
@@ -25,14 +29,31 @@ public class Farmer : MonoBehaviour
 
         _yVelocity -= _gravity * Time.deltaTime;
 
-        if (_player.isHiding) return;
+        if (!Root.Instance.IsHiding)
+        {
+            delta = Root.Instance.transform.position - transform.position;
+            delta.y = 0;
 
-        var delta = _player.transform.position - transform.position;
+            if (_wander != null)
+            {
+                StopCoroutine(_wander);
+                _wander = null;
+            }
+        }
+        else _wander ??= StartCoroutine(Wander());
 
-        delta.Normalize();
+        transform.rotation = Quaternion.LookRotation(delta);
 
-        delta.y = _yVelocity;
+        _controller.Move(Time.deltaTime * (Vector3.up * _yVelocity + transform.forward * _speed));
+    }
 
-        _controller.Move(_speed * Time.deltaTime * delta);
+    IEnumerator Wander()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(_wanderInterval);
+            var pos = Random.insideUnitCircle;
+            delta = new Vector3(pos.x, 0, pos.y);
+        }
     }
 }

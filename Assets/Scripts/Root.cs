@@ -34,10 +34,16 @@ public class Root : MonoBehaviour
 
     bool _isAnimating;
 
-    public bool isHiding;
+    public static Root Instance { get; private set; }
+
+    public bool IsHiding { get; private set; }
 
     void Awake()
     {
+        Instance = this;
+
+        IsHiding = true;
+
         _hideStateId = Animator.StringToHash(_hideState);
         _emergeStateId = Animator.StringToHash(_emergeState);
 
@@ -114,15 +120,15 @@ public class Root : MonoBehaviour
 
         if (!_isRooted || _isAnimating)
         {
-            isHiding = false;
+            IsHiding = false;
             _exposedMessage.SetActive(false);
             _hidingMessage.SetActive(false);
             return;
         }
 
-        isHiding = Physics.CheckSphere(_wheatCheck.position, _wheatCheckRadius, _wheat, QueryTriggerInteraction.Collide);
+        IsHiding = Physics.CheckSphere(_wheatCheck.position, _wheatCheckRadius, _wheat, QueryTriggerInteraction.Collide);
 
-        _exposedMessage.SetActive(!isHiding);
-        _hidingMessage.SetActive(isHiding);
+        _exposedMessage.SetActive(!IsHiding);
+        _hidingMessage.SetActive(IsHiding);
     }
 }
