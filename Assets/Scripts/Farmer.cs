@@ -6,6 +6,8 @@ public class Farmer : MonoBehaviour
     [SerializeField] CharacterController _controller;
     [SerializeField] float _gravity = 9.81f;
     [SerializeField] float _speed;
+    [SerializeField] float _range;
+    [SerializeField] float _cone;
     [SerializeField] float _wanderInterval;
     [SerializeField] Animator _animator;
 
@@ -16,6 +18,11 @@ public class Farmer : MonoBehaviour
     Coroutine _wander;
 
     static readonly int SpeedId = Animator.StringToHash("Speed");
+
+    void OnDrawGizmosSelected()
+    {
+        Gizmos.DrawWireSphere(transform.position, _range);
+    }
 
     void Awake()
     {
@@ -33,9 +40,15 @@ public class Farmer : MonoBehaviour
 
         _yVelocity -= _gravity * Time.deltaTime;
 
-        if (!Root.Instance.IsHiding)
+        var toPlayer = Root.Instance.transform.position - transform.position;
+
+        toPlayer.Normalize();
+
+        print(Vector3.Dot(transform.forward, toPlayer));
+
+        if (!Root.Instance.IsHiding && toPlayer.sqrMagnitude < _range * _range && Vector3.Dot(transform.forward, toPlayer) > _cone)
         {
-            delta = Root.Instance.transform.position - transform.position;
+            delta = toPlayer;
             delta.y = 0;
 
             if (_wander != null)

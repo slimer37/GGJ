@@ -226,5 +226,7 @@ MonoBehaviour:
   _controller: {fileID: 1542023278}
   _gravity: 9.81
   _speed: 2
+  _range: 30
+  _cone: 0.5
   _wanderInterval: 5
   _animator: {fileID: 1542023276}
