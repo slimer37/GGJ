@@ -24,6 +24,8 @@ public class Farmer : MonoBehaviour
 
     void Update()
     {
+        if (!Root.Instance) return;
+
         if (_controller.isGrounded)
         {
             _yVelocity = 0;

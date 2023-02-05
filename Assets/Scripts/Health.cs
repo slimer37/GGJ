@@ -139,5 +139,6 @@ public class Health : MonoBehaviour
         _deathScreen.interactable = true;
 
         Destroy(_movement);
+        Destroy(Root.Instance);
     }
 }
