@@ -42,6 +42,11 @@ public class Health : MonoBehaviour
         _deathScreen.interactable = false;
     }
 
+    public void InstaKill()
+    {
+        Damage(_maxHealth);
+    }
+
     private void OnRoot(bool isRooted)
     {
         _isRooted = isRooted;

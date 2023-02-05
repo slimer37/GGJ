@@ -36,6 +36,8 @@ public class Root : MonoBehaviour
 
     public static Root Instance { get; private set; }
 
+    public bool IsRooted => _isRooted;
+
     public bool IsHiding { get; private set; }
 
     void Awake()

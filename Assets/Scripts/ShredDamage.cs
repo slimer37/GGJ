@@ -12,6 +12,12 @@ public class ShredDamage : MonoBehaviour
     {
         if (!other.CompareTag("Kill")) return;
 
+        if (Root.Instance.IsRooted)
+        {
+            _health.InstaKill();
+            return;
+        }
+
         _interval += Time.fixedDeltaTime;
 
         if (_interval > _damageInterval)
