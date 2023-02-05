@@ -19,6 +19,7 @@ public class Root : MonoBehaviour
     [SerializeField] LayerMask _wheat;
     [SerializeField] GameObject _exposedMessage;
     [SerializeField] GameObject _hidingMessage;
+    [SerializeField] GameObject _firstRootMessage;
 
     public event Action<bool> OnRoot;
 
@@ -28,6 +29,8 @@ public class Root : MonoBehaviour
     Controls _controls;
 
     bool _isRooted;
+
+    bool _firstRoot = true;
 
     bool _isAnimating;
 
@@ -43,6 +46,12 @@ public class Root : MonoBehaviour
         _controls.Enable();
 
         _controls.Player.TakeRoot.performed += _ => StartTakingRoot();
+
+        StartTakingRoot();
+
+        _firstRootMessage.SetActive(true);
+        _exposedMessage.SetActive(false);
+        _hidingMessage.SetActive(false);
     }
 
     public void StartTakingRoot()
@@ -70,6 +79,12 @@ public class Root : MonoBehaviour
             _source.PlayOneShot(_emergeClip, _volumeScale);
 
             OnRoot?.Invoke(false);
+
+            if (_firstRoot)
+            {
+                _firstRootMessage.SetActive(false);
+                _firstRoot = false;
+            }
         }
 
         yield return null;
@@ -90,6 +105,8 @@ public class Root : MonoBehaviour
 
     void FixedUpdate()
     {
+        if (_firstRoot) return;
+
         if (!_isRooted || _isAnimating)
         {
             _isHiding = false;
