@@ -19,7 +19,6 @@ public class Farmer : MonoBehaviour
 
     void Awake()
     {
-        delta = Vector3.forward;
         _wander = StartCoroutine(Wander());
     }
 
@@ -45,17 +44,27 @@ public class Farmer : MonoBehaviour
         }
         else _wander ??= StartCoroutine(Wander());
 
-        transform.rotation = Quaternion.LookRotation(delta);
+        if (delta != Vector3.zero)
+        {
+            transform.rotation = Quaternion.LookRotation(delta);
 
-        _controller.Move(Time.deltaTime * (Vector3.up * _yVelocity + transform.forward * _speed));
+            _controller.Move(Time.deltaTime * (Vector3.up * _yVelocity + transform.forward * _speed));
 
-        var velocity = _controller.velocity;
-        velocity.y = 0;
-        _animator.SetFloat(SpeedId, velocity.sqrMagnitude);
+            var velocity = _controller.velocity;
+            velocity.y = 0;
+
+            _animator.SetFloat(SpeedId, velocity.sqrMagnitude);
+        }
+        else
+        {
+            _animator.SetFloat(SpeedId, 0f);
+        }
     }
 
     IEnumerator Wander()
     {
+        delta = Vector3.zero;
+
         while (true)
         {
             yield return new WaitForSeconds(_wanderInterval);
