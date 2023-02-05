@@ -6633,9 +6633,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _damageInterval: 0.01
-  _farmerDamageInterval: 0.1
+  _farmerDamageInterval: 2.5
   _damage: 1
-  _farmerDamage: 1
+  _farmerDamage: 50
   _health: {fileID: 468506588}
 --- !u!1 &468506584
 GameObject:
