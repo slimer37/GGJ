@@ -127,6 +127,7 @@ public class Health : MonoBehaviour
         if (IsDead) yield break;
 
         _movement.enabled = false;
+        Score.Instance.enabled = false;
 
         IsDead = true;
 
