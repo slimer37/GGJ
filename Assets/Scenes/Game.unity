@@ -6463,7 +6463,7 @@ MonoBehaviour:
   _gravity: 9.81
   _smoothing: 0.1
   _animator: {fileID: 1360686590}
-  _boostSpeed: 8
+  _boostSpeed: 10
   _boostDuration: 8
 --- !u!143 &445230755
 CharacterController:
@@ -8834,7 +8834,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2cbfda02840c8a4db926fae909b4770, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  points: 100
+  points: 1000
   heal: 20
   floatAmplitude: 0.5
   floatFrequency: 4
@@ -11550,6 +11550,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1542023279, guid: 2a486e42310d4f9458a9fd90aa8bbefa, type: 3}
+      propertyPath: _speed
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 4621498792966836889, guid: 2a486e42310d4f9458a9fd90aa8bbefa,
         type: 3}
       propertyPath: m_RootOrder
@@ -11849,6 +11853,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1542023279, guid: 2a486e42310d4f9458a9fd90aa8bbefa, type: 3}
+      propertyPath: _speed
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 4621498792966836889, guid: 2a486e42310d4f9458a9fd90aa8bbefa,
         type: 3}
       propertyPath: m_RootOrder
@@ -23969,6 +23977,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1542023279, guid: 2a486e42310d4f9458a9fd90aa8bbefa, type: 3}
+      propertyPath: _speed
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 4621498792966836889, guid: 2a486e42310d4f9458a9fd90aa8bbefa,
         type: 3}
       propertyPath: m_RootOrder
